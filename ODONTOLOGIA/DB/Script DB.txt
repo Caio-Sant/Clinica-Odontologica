@@ -1,0 +1,69 @@
+﻿drop database odontologiaDB;
+
+create database odontologiaDB;
+
+use odontologiaDB;
+
+CREATE TABLE `tb_permissao` (
+	`id_permissao` INT NOT NULL AUTO_INCREMENT,
+	`nm_permissao` varchar(100) NOT NULL,
+	`ds_login` varchar(100) NOT NULL,
+	`ds_senha` varchar(100) NOT NULL,
+	`bt_permissao_adm` BOOLEAN NOT NULL,
+	PRIMARY KEY (`id_permissao`)
+);
+
+CREATE TABLE `tb_funcionario` (
+	`id_funcionario` INT NOT NULL AUTO_INCREMENT,
+	`nm_funcionario` varchar(100) NOT NULL,
+	`ds_telefone` varchar(20) NOT NULL,
+	`ds_numerocasa` varchar(5) NOT NULL,
+	`ds_cep` varchar(10) NOT NULL,
+	`ds_sexo` varchar(15) NOT NULL,
+	`ds_rg` varchar(10) NOT NULL,
+	`ds_cpf` varchar(20) NOT NULL,
+	`dt_nascimento` DATE NOT NULL,
+	`ds_salario` varchar(20) NOT NULL,
+	`ds_email` varchar(100) NOT NULL,
+	`ds_cargo` varchar(100) NOT NULL,
+	`dt_admissao` DATE NOT NULL,
+    `bt_permissao_adm` BOOLEAN NOT NULL,
+    `ds_senha` varchar(100) NOT NULL,
+	PRIMARY KEY (`id_funcionario`)
+);
+
+
+CREATE TABLE `tb_usuario` (
+	`id_usuario` INT NOT NULL AUTO_INCREMENT,
+	`ds_cpf` varchar(20) NOT NULL,
+	`ds_senha` varchar(100) NOT NULL,
+	PRIMARY KEY (`id_usuario`)
+);
+
+CREATE TABLE `tb_folhapagamento` (
+	`id_folhapagamento` int NOT NULL AUTO_INCREMENT,
+	`id_funcionario` int NOT NULL,
+	`vl_total` DOUBLE NOT NULL,
+	`dt_pagamento` DATE NOT NULL,
+	`vl_salariobase` DECIMAL NOT NULL,
+	`qtd_horaextra` DOUBLE NOT NULL,
+	`vl_salariofamilia` DOUBLE NOT NULL,
+	`vl_inss` DOUBLE NOT NULL,
+	`vl_irrf` DOUBLE NOT NULL,
+    `vl_fgts` DOUBLE ,
+	`vl_valetransporte` DOUBLE NOT NULL,
+	`qtd_faltas` DOUBLE NOT NULL,
+	`qtd_atrasos` DOUBLE NOT NULL,
+    `vl_dsr` DOUBLE NOT NULL,
+	`vl_diastra` DOUBLE NOT NULL,
+    `vl_domintra` DOUBLE NOT NULL,
+
+	PRIMARY KEY (`id_folhapagamento`)
+);
+
+
+INSERT INTO  tb_permissao (nm_permissao, ds_login, ds_senha, bt_permissao_adm) 
+     VALUES ('adm', 'adm', '1234', true);
+
+INSERT INTO  tb_permissao (nm_permissao, ds_login, ds_senha, bt_permissao_adm) 
+     VALUES ('atendente', 'atendente', '1234', false);
